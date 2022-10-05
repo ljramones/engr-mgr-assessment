@@ -1,0 +1,20 @@
+spring:
+  sql:
+    init:
+      platform: postgres
+  datasource:
+    url: jdbc:tc:postgresql:12.9-alpine:///spring_boot_testcontainers
+    hikari:
+      connection-timeout: 250
+  test:
+    database:
+      replace: none
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: public
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+    hibernate.ddl-auto: update
+    show-sql: true

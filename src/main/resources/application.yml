@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: engmgr
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userhours_dev
+    username: userhours_user
+    password: Super-e3cret
+    hikari:
+      connection-timeout: 250
+
+server:
+  port: 3000
+
+springdoc:
+  api-docs:
+    path: /api-docs

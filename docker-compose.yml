@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: take-home-db
+    image: postgres:13-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./sql/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    env_file:
+      - .env.dev
+
+  web:
+    container_name: web
+    image: larry13767/engrmgr-java-jib
+    restart: always
+    depends_on:
+      - "db"
+    ports:
+      - "3000:3000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/userhours_dev
+
+
